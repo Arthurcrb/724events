@@ -1,4 +1,3 @@
-
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "./index";
 
@@ -28,21 +27,20 @@ describe("When Form is created", () => {
 });
 
 describe("When a page is created", () => {
-    it("a list of events is displayed", async () => {
+    it("displays a list of events", async () => {
         render(<Home />);
-        const eventCardImages = screen.getAllByTestId("card-image-testid");
-        expect(eventCardImages.length).toBe(9);
+        const eventList = screen.getByTestId("eventsTest");
+        expect(eventList).toBeInTheDocument();
     });
-    // it("a list a people is displayed", async () => {
-    //     render(<Home />);
-    //     const peopleCards = screen.getAllByTestId("card-image-testid");
-    //     expect(peopleCards.length).toBe(6);
-    // });
+    it("a list a people is displayed", async () => {
+        render(<Home />);
+        const peopleCard = screen.getByTestId("PeoplesContainerTitleTest");
+        expect(peopleCard).toBeInTheDocument();
+        screen.findByText("Notre équipe");
+    });
     it("a footer is displayed", async () => {
         render(<Home />);
         screen.getByText("Notre dernière prestation");
         screen.getByText("Contactez-nous");
     });
 });
-
-
